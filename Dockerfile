@@ -14,3 +14,4 @@ USER node
 
 ENTRYPOINT [ "npm" ]
 CMD ["run", "dev"]
+
