@@ -6,6 +6,8 @@ import {
   model,
 } from 'mongoose';
 
+const INVALID_MONGO_ID = 'Invalid Mongo id';
+
 export default abstract class AbstractODM<T> {
   protected model: Model<T>;
   protected schema: Schema;
@@ -22,7 +24,7 @@ export default abstract class AbstractODM<T> {
   }
 
   public async update(_id: string, obj: Partial<T>): Promise<T | null> {
-    if (!isValidObjectId(_id)) throw Error('Invalid Mongo id');
+    if (!isValidObjectId(_id)) throw Error(INVALID_MONGO_ID);
 
     return this.model.findByIdAndUpdate(
       { _id },
@@ -36,11 +38,12 @@ export default abstract class AbstractODM<T> {
   }
 
   public async getById(id: string): Promise<T[] | null> {
+    if (!isValidObjectId(id)) throw Error(INVALID_MONGO_ID);
     return this.model.find({ id });
   }
 
   public async remove(id: string): Promise<T | null> {
-    if (!isValidObjectId(id)) throw Error('Invalid Mongo id');
+    if (!isValidObjectId(id)) throw Error(INVALID_MONGO_ID);
 
     return this.model.findByIdAndDelete(id);
   }
