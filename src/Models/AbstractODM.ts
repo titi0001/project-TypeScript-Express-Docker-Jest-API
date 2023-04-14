@@ -30,4 +30,18 @@ export default abstract class AbstractODM<T> {
       { new: true },
     );
   }
+
+  public async getAll(): Promise<T[]> {
+    return this.model.find();
+  }
+
+  public async getById(id: string): Promise<T[] | null> {
+    return this.model.find({ id });
+  }
+
+  public async remove(id: string): Promise<T | null> {
+    if (!isValidObjectId(id)) throw Error('Invalid Mongo id');
+
+    return this.model.findByIdAndDelete(id);
+  }
 }
