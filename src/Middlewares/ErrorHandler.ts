@@ -5,9 +5,11 @@ export default class ErrorHandler {
     error: Error,
     _req: Request,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
   ) {
-    res.status(500).json({ message: error.message });
-    next();
+    if (error instanceof Error && error.stack) {
+      return res.status(parseInt(error.stack, 10)).json({ message: error.message });
+    }
+    return res.status(500).json({ message: error.message });
   }
 }

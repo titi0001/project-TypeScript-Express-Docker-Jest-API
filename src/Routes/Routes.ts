@@ -28,4 +28,29 @@ routes.delete(
   (req, res, next) => new CarController(req, res, next).create(),
 );
 
+routes.post(
+  '/motorcycles',
+  (req, res, next) => new CarController(req, res, next).create(),
+);
+
+routes.get(
+  '/motorcycles',
+  (req, res, next) => new CarController(req, res, next).create(),
+);
+
+routes.get(
+  '/motorcycles/:id',
+  (req, res, next) => new CarController(req, res, next).create(),
+);
+
+routes.put(
+  '/motorcycles/:id',
+  (req, res, next) => new CarController(req, res, next).create(),
+);
+
+routes.delete(
+  '/motorcycles/:id',
+  (req, res, next) => new CarController(req, res, next).create(),
+);
+
 export default routes;
