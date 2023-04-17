@@ -33,4 +33,27 @@ export default class CarController {
       this.next(error);
     }
   }
+
+  async getAllCar() {
+    const allCars = await this.service.readAll();
+    return this.res.status(200).send(allCars);
+  }
+
+  async getById() {
+    const { id } = this.req.params;
+    const carId = await this.service.readById(id);
+    return this.res.status(200).send(carId);
+  }
+
+  async update() {
+    const { id } = this.req.params;
+    const updateCar = await this.service.update(id, this.req.body);
+    return this.res.status(200).send(updateCar);
+  }
+
+  async remove() {
+    const { id } = this.req.params;
+    const removeCar = await this.service.remove(id);
+    return this.res.status(200).send(removeCar);
+  }
 }
