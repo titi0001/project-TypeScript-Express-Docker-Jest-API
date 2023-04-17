@@ -1,12 +1,12 @@
 import Motorcycle from '../Domains/Motorcycle';
 import IdNotFoundMotorcycle from '../Erros/IdNotFoundMotorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
-import MotorcyclesODM from '../Models/MotorcycleODM';
+import MotorcycleODM from '../Models/MotorcycleODM';
 
 const NOT_FOUND = 'Motorcycle not found';
 
 export default class MotorcyclesService {
-  private model:MotorcyclesODM = new MotorcyclesODM();
+  private model:MotorcycleODM = new MotorcycleODM();
  
   private createMotorcycleDomain(motorcycle: IMotorcycle): Motorcycle | null {
     if (motorcycle) {

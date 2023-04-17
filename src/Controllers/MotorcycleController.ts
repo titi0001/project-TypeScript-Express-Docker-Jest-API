@@ -36,8 +36,8 @@ export default class MotorcyclesController {
       
   async getAllMotorcycle() {
     try {
-      const allCars = await this.service.readAll();
-      return this.res.status(200).send(allCars);
+      const allMotorcycle = await this.service.readAll();
+      return this.res.status(200).send(allMotorcycle);
     } catch (error) {
       this.next(error);
     }
