@@ -7,7 +7,7 @@ import {
 } from 'mongoose';
 import InvalidId from '../Erros/InvalidId';
 
-const INVALID_MONGO_ID = 'Invalid Mongo id';
+const INVALID_MONGO_ID = 'Invalid mongo id';
 
 export default abstract class AbstractODM<T> {
   protected model: Model<T>;

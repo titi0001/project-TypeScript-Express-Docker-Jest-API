@@ -35,25 +35,41 @@ export default class MotorcyclesController {
   }
       
   async getAllMotorcycle() {
-    const allCars = await this.service.readAll();
-    return this.res.status(200).send(allCars);
+    try {
+      const allCars = await this.service.readAll();
+      return this.res.status(200).send(allCars);
+    } catch (error) {
+      this.next(error);
+    }
   }
       
   async getById() {
     const { id } = this.req.params;
-    const motorcycleId = await this.service.readById(id);
-    return this.res.status(200).send(motorcycleId);
+    try {
+      const motorcycleId = await this.service.readById(id);
+      return this.res.status(200).send(motorcycleId);
+    } catch (error) {
+      this.next(error);
+    }
   }
       
   async update() {
     const { id } = this.req.params;
-    const updateMotorcycle = await this.service.update(id, this.req.body);
-    return this.res.status(200).send(updateMotorcycle);
+    try {
+      const updateMotorcycle = await this.service.update(id, this.req.body);
+      return this.res.status(200).send(updateMotorcycle);
+    } catch (error) {
+      this.next(error);
+    }
   }
       
   async remove() {
     const { id } = this.req.params;
-    const removeMotorcycle = await this.service.remove(id);
-    return this.res.status(200).send(removeMotorcycle);
+    try {
+      await this.service.remove(id);
+      return this.res.status(204).send();
+    } catch (error) {
+      this.next(error);
+    }
   }
 }
