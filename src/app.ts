@@ -1,7 +1,7 @@
 import express from 'express';
 import ErrorHandler from './Middlewares/ErrorHandler';
 import Cars from './Routes/CarRoutes';
-import Motorcycles from './Routes/MotorcyclesRoute';
+import Motorcycles from './Routes/MotorcycleRoute';
 
 const app = express();
 app.use(express.json());
