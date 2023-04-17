@@ -1,4 +1,5 @@
 import Car from '../Domains/Car';
+import IdNotFoundCar from '../Erros/IdNotfoundCar';
 import ICar from '../Interfaces/ICar';
 import CarsODM from '../Models/CarODM';
 
@@ -27,19 +28,20 @@ export default class CarService {
 
   async readById(id: string) {
     const carById = await this.model.getById(id);
-    if (!carById) throw new Error(NOT_FOUND);   
+    
+    if (!carById) throw new IdNotFoundCar(NOT_FOUND);   
     return this.createCarDomain(carById);
   }
 
   async update(id: string, car: Partial<ICar>) {
     const updateCar = await this.model.update(id, car);
     if (updateCar) return this.createCarDomain(updateCar);
-    throw new Error(NOT_FOUND);
+    throw new IdNotFoundCar(NOT_FOUND);
   }
 
   async remove(id: string) {
     const removeCar = await this.model.remove(id);
     if (removeCar) return this.createCarDomain(removeCar);
-    throw new Error(NOT_FOUND);
+    throw new IdNotFoundCar(NOT_FOUND);
   }
 }

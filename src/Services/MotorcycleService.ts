@@ -1,4 +1,5 @@
 import Motorcycle from '../Domains/Motorcycle';
+import IdNotFoundMotorcycle from '../Erros/IdNotFoundMotorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcyclesODM from '../Models/MotorcycleODM';
 
@@ -27,19 +28,19 @@ export default class MotorcyclesService {
 
   async readById(id: string) {
     const motorcycleById = await this.model.getById(id);
-    if (!motorcycleById) throw new Error(NOT_FOUND);   
+    if (!motorcycleById) throw new IdNotFoundMotorcycle(NOT_FOUND);   
     return this.createMotorcycleDomain(motorcycleById);
   }
 
   async update(id: string, motorcycle: Partial<IMotorcycle>) {
     const updateMotorcycle = await this.model.update(id, motorcycle);
     if (updateMotorcycle) return this.createMotorcycleDomain(updateMotorcycle);
-    throw new Error(NOT_FOUND);
+    throw new IdNotFoundMotorcycle(NOT_FOUND);
   }
 
   async remove(id: string) {
     const removeMotorcycle = await this.model.remove(id);
     if (removeMotorcycle) return this.createMotorcycleDomain(removeMotorcycle);
-    throw new Error(NOT_FOUND);
+    throw new IdNotFoundMotorcycle(NOT_FOUND);
   }
 }

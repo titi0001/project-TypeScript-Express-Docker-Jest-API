@@ -1,4 +1,4 @@
-export default class IdNotFound extends Error {
+export default class IdNotFoundCar extends Error {
   constructor(message : string) {
     super(message);
     this.message = message;
